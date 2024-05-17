@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace myTaskApi.Services
 {
-    public class TodoServices
+    public class TodoServices : ITodoReposatory
     {
         public List<Todo> AllTodos()
         {

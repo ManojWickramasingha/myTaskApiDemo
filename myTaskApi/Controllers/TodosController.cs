@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using myTaskApi.Model;
 using myTaskApi.Services;
 using System;
 using System.Collections.Generic;
@@ -14,11 +13,11 @@ namespace myTaskApi.Controllers
     public class TodosController : ControllerBase
     {
         
-        private TodoServices _todoServices;
+        private ITodoReposatory _todoServices; 
 
-        public TodosController()
+        public TodosController(ITodoReposatory reposatory)
         {
-            _todoServices = new TodoServices();
+            _todoServices =reposatory;
         }
         [HttpGet("{id?}")]
        public IActionResult getTodos(int? id)
