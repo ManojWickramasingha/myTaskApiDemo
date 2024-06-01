@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using myTaskApi.DataAccess;
 
-namespace myTaskApi.Services
+namespace myTaskApi.Services.Expenses
 {  
     public class ExpenseSqlServerServices : IExpenseReposatory
     {
@@ -16,5 +16,7 @@ namespace myTaskApi.Services
         {
             return _context.Expenses.ToList();
         }  
+
+      
     }
 }

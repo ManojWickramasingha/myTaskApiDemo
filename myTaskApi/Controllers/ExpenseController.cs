@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using myTaskApi.Services;
+using myTaskApi.Services.Expenses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,29 +8,31 @@ using System.Threading.Tasks;
 
 namespace myTaskApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/expenses")]
     [ApiController]
     public class ExpenseController : ControllerBase
     {
         
-        private IExpenseReposatory _todoServices; 
+        private IExpenseReposatory _expenseServices; 
 
         public ExpenseController(IExpenseReposatory reposatory)
         {
-            _todoServices =reposatory;
+            _expenseServices =reposatory;
         }
         [HttpGet("{id?}")]
-       public IActionResult getTodos(int? id)
+       public IActionResult expenses(int? id)
         {
-            var myTodos = _todoServices.AllExpenses();
+            var myExpenses = _expenseServices.AllExpenses();
 
-            if (id is null) return Ok(myTodos);
+            if (id is null) return Ok(myExpenses);
 
-            myTodos = myTodos.Where(t => t.id == id).ToList();
+            myExpenses = myExpenses.Where(t => t.id == id).ToList();
 
-            return Ok(myTodos);
+            return Ok(myExpenses);
             
         }
+
+     
         //get todos----
        
     }
