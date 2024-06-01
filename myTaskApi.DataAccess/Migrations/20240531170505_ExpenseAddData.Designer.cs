@@ -10,8 +10,8 @@ using myTaskApi.DataAccess;
 namespace myTaskApi.DataAccess.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    [Migration("20240517114007_Initial")]
-    partial class Initial
+    [Migration("20240531170505_ExpenseAddData")]
+    partial class ExpenseAddData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,15 @@ namespace myTaskApi.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("myTaskApi.Model.Todo", b =>
+            modelBuilder.Entity("myTaskApi.Model.Expense", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -45,7 +48,19 @@ namespace myTaskApi.DataAccess.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Todos");
+                    b.ToTable("Expenses");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            Amount = 3000.0,
+                            Description = "Get some text books for school",
+                            Due = new DateTime(2024, 6, 5, 22, 35, 5, 317, DateTimeKind.Local).AddTicks(9040),
+                            created = new DateTime(2024, 5, 31, 22, 35, 5, 316, DateTimeKind.Local).AddTicks(6551),
+                            status = 0,
+                            title = "Expense Tax record in database"
+                        });
                 });
 #pragma warning restore 612, 618
         }

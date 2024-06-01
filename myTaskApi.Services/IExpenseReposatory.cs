@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace myTaskApi.Services
 {
-   public interface ITodoReposatory
+   public interface IExpenseReposatory
     {
-        public List<Todo> AllTodos();
+        public List<Expense> AllExpenses();
     }
 }

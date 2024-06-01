@@ -10,8 +10,8 @@ using myTaskApi.DataAccess;
 namespace myTaskApi.DataAccess.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    [Migration("20240517114007_Initial")]
-    partial class Initial
+    [Migration("20240531164141_initial2")]
+    partial class initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,15 @@ namespace myTaskApi.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("myTaskApi.Model.Todo", b =>
+            modelBuilder.Entity("myTaskApi.Model.Expense", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -45,7 +48,7 @@ namespace myTaskApi.DataAccess.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Todos");
+                    b.ToTable("Expenses");
                 });
 #pragma warning restore 612, 618
         }

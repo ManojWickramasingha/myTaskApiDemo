@@ -10,19 +10,19 @@ namespace myTaskApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodosController : ControllerBase
+    public class ExpenseController : ControllerBase
     {
         
-        private ITodoReposatory _todoServices; 
+        private IExpenseReposatory _todoServices; 
 
-        public TodosController(ITodoReposatory reposatory)
+        public ExpenseController(IExpenseReposatory reposatory)
         {
             _todoServices =reposatory;
         }
         [HttpGet("{id?}")]
        public IActionResult getTodos(int? id)
         {
-            var myTodos = _todoServices.AllTodos();
+            var myTodos = _todoServices.AllExpenses();
 
             if (id is null) return Ok(myTodos);
 

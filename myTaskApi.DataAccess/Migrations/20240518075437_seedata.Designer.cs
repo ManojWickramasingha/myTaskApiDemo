@@ -9,7 +9,7 @@ using myTaskApi.DataAccess;
 
 namespace myTaskApi.DataAccess.Migrations
 {
-    [DbContext(typeof(TodoDbContext))]
+    [DbContext(typeof(ExpenseDbContext))]
     [Migration("20240518075437_seedata")]
     partial class seedata
     {

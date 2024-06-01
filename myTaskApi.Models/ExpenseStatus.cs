@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace myTaskApi.Model
 {
-    public enum TodoStatus
+    public enum ExpenseStatus
     {
         New,
         inprgress,

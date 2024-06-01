@@ -34,7 +34,7 @@ namespace myTaskApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "myTaskApi", Version = "v1" });
             });
 
-            services.AddScoped<ITodoReposatory, TodoSqlServerServices>();
+            services.AddScoped<IExpenseReposatory, ExpenseSqlServerServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

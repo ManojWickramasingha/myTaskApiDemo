@@ -1,11 +1,12 @@
-﻿using System;
+﻿using myTaskApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace myTaskApi.Model
 {
-    public class Todo
+    public class Expense
     {
         public int id { get; set; }
         public String title { get; set; }
@@ -15,6 +16,12 @@ namespace myTaskApi.Model
 
         public DateTime Due { get; set; }
 
-        public TodoStatus status { get; set; }
+        public ExpenseStatus status { get; set; }
+
+        public double Amount { get; set; }
+
+        public int Adminid { get; set; }
+
+        public Admin Admin { get; set; }
     }
 }
