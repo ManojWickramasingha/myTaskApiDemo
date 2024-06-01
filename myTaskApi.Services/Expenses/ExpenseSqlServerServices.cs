@@ -17,6 +17,9 @@ namespace myTaskApi.Services.Expenses
             return _context.Expenses.ToList();
         }  
 
-      
+        public Expense GetExpense(int id)
+        {
+            return _context.Expenses.Find(id);
+        }
     }
 }

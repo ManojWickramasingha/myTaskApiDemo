@@ -19,17 +19,23 @@ namespace myTaskApi.Controllers
         {
             _expenseServices =reposatory;
         }
-        [HttpGet("{id?}")]
-       public IActionResult expenses(int? id)
+        [HttpGet]
+        public IActionResult AllExpenses ()
         {
             var myExpenses = _expenseServices.AllExpenses();
-
-            if (id is null) return Ok(myExpenses);
-
-            myExpenses = myExpenses.Where(t => t.id == id).ToList();
-
             return Ok(myExpenses);
             
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetExpense(int id)
+        {
+            var expense = _expenseServices.GetExpense(id);
+            if(expense is null)
+            {
+                return NotFound();
+            }
+            return Ok(expense);
         }
 
      

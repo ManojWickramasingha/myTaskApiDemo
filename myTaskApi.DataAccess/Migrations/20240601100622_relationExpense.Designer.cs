@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using myTaskApi.DataAccess;
 
 namespace myTaskApi.DataAccess.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    partial class TodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240601100622_relationExpense")]
+    partial class relationExpense
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,9 +67,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 1,
                             Amount = 3000.0,
                             Description = "Get some text books for school",
-                            Due = new DateTime(2024, 6, 6, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(1235),
+                            Due = new DateTime(2024, 6, 6, 15, 36, 21, 935, DateTimeKind.Local).AddTicks(5621),
                             UserId = 100,
-                            created = new DateTime(2024, 6, 1, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(978),
+                            created = new DateTime(2024, 6, 1, 15, 36, 21, 935, DateTimeKind.Local).AddTicks(5356),
                             status = 0,
                             title = "Expense Tax record in database"
                         },
@@ -77,9 +79,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 2,
                             Amount = 3890.0,
                             Description = "Goverment Tax Added water bill",
-                            Due = new DateTime(2024, 6, 6, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2393),
+                            Due = new DateTime(2024, 6, 6, 15, 36, 21, 935, DateTimeKind.Local).AddTicks(6805),
                             UserId = 101,
-                            created = new DateTime(2024, 6, 1, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2389),
+                            created = new DateTime(2024, 6, 1, 15, 36, 21, 935, DateTimeKind.Local).AddTicks(6801),
                             status = 0,
                             title = "Expense For Water bill"
                         },
@@ -89,9 +91,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 1,
                             Amount = 3780.0,
                             Description = "Goverment Tax Added current bill",
-                            Due = new DateTime(2024, 6, 6, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2402),
+                            Due = new DateTime(2024, 6, 6, 15, 36, 21, 935, DateTimeKind.Local).AddTicks(6813),
                             UserId = 102,
-                            created = new DateTime(2024, 6, 1, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2401),
+                            created = new DateTime(2024, 6, 1, 15, 36, 21, 935, DateTimeKind.Local).AddTicks(6812),
                             status = 0,
                             title = "Expense For Current bill"
                         });
@@ -173,7 +175,7 @@ namespace myTaskApi.DataAccess.Migrations
                             Categories = "Utility Income",
                             UserId = 100,
                             description = "receive bording fees",
-                            start = new DateTime(2024, 6, 1, 16, 47, 46, 814, DateTimeKind.Local).AddTicks(8598)
+                            start = new DateTime(2024, 6, 1, 15, 36, 21, 934, DateTimeKind.Local).AddTicks(3000)
                         },
                         new
                         {
@@ -182,46 +184,7 @@ namespace myTaskApi.DataAccess.Migrations
                             Categories = "Salary",
                             UserId = 102,
                             description = "receive monthly salary",
-                            start = new DateTime(2024, 6, 1, 16, 47, 46, 815, DateTimeKind.Local).AddTicks(8660)
-                        });
-                });
-
-            modelBuilder.Entity("myTaskApi.Models.Saving", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Savings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 10,
-                            Description = "Saving montlty utility Income",
-                            Name = "manoj",
-                            UserId = 100
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Description = "Saving Salary",
-                            Name = "Lahiru",
-                            UserId = 101
+                            start = new DateTime(2024, 6, 1, 15, 36, 21, 935, DateTimeKind.Local).AddTicks(2930)
                         });
                 });
 
@@ -296,17 +259,6 @@ namespace myTaskApi.DataAccess.Migrations
                 });
 
             modelBuilder.Entity("myTaskApi.Models.Income", b =>
-                {
-                    b.HasOne("myTaskApi.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("myTaskApi.Models.Saving", b =>
                 {
                     b.HasOne("myTaskApi.Models.User", "User")
                         .WithMany()

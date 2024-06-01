@@ -23,5 +23,9 @@ namespace myTaskApi.Model
         public int Adminid { get; set; }
 
         public Admin Admin { get; set; }
+
+       public int UserId { get; set; }
+       public User User { get; set; }
+      
     }
 }
