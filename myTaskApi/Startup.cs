@@ -7,10 +7,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using myTaskApi.Services.Expenses;
+using myTaskApi.Services.Admins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using myTaskApi.Services.Incomes;
+using myTaskApi.Services.Users;
+using myTaskApi.Services.Savings;
 
 namespace myTaskApi
 {
@@ -27,11 +32,19 @@ namespace myTaskApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(options => {
+                options.ReturnHttpNotAcceptable = true;
+            }).AddXmlDataContractSerializerFormatters();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "myTaskApi", Version = "v1" });
             });
+
+            services.AddScoped<IExpenseReposatory, ExpenseSqlServerServices>();
+            services.AddScoped<IAdminReposatory, AdminSqlServerServices>();
+            services.AddScoped<IIncomeReposatory, IncomeSqlServerServices>();
+            services.AddScoped<IUserReposatory, UserSqlServerService>();
+            services.AddScoped<ISavingReposatory, SavingSqlServerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
