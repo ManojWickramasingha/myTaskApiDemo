@@ -28,5 +28,7 @@ namespace myTaskApi.Models
         public String City { get; set; }
 
         public ICollection<Expense> Expenses { get; set; } = new List<Expense>();
+
+        public ICollection<Income> Incomes { get; set; } = new List<Income>();
     }
 }

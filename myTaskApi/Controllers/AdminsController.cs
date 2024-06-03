@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myTaskApi.Services.Admins;
+using myTaskApi.Services.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +17,19 @@ namespace myTaskApi.Controllers
     {
 
         private readonly IAdminReposatory _service;
-        public AdminsController(IAdminReposatory service)
+        private readonly IMapper _mapper;
+        public AdminsController(IAdminReposatory service,IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
       
         [HttpGet]
         public IActionResult GetAdmins()
         {
             var admins = _service.GetAllAdmins();
-            return Ok(admins);
+            var mapadmins = _mapper.Map<ICollection<AdminDTO>>(admins);
+            return Ok(mapadmins);
         }
 
      
@@ -36,7 +41,8 @@ namespace myTaskApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(admin);
+            var mapadmin = _mapper.Map<AdminDTO>(admin);
+            return Ok(mapadmin);
         }
     }
 }

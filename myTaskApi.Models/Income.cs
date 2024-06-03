@@ -10,6 +10,7 @@ namespace myTaskApi.Models
     public class Income
     {
         [Required]
+        
         public String Id { get; set; }
         [Required]
         public double Amount { get; set; }

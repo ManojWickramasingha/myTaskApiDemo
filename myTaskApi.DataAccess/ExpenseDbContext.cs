@@ -113,7 +113,7 @@ namespace myTaskApi.DataAccess
 
                 new Income
                 {
-                    Id = "c001",
+                    Id = "c00b",
                     Amount = 450.0,
                     Categories = "Utility Income",
                     description = "receive bording fees",
@@ -122,7 +122,7 @@ namespace myTaskApi.DataAccess
                 },
                 new Income
                 {
-                     Id = "c002",
+                     Id = "c01b",
                     Amount = 450.0,
                     Categories = "Salary",
                     description = "receive monthly salary",
@@ -132,11 +132,11 @@ namespace myTaskApi.DataAccess
             }); 
             modelBuilder.Entity<Admin>().HasData(new Admin[] { 
             
-                new Admin { id = 1, name = "manoj",gmail="manoj@gmail.com"},
-                new Admin { id = 2, name = "Lahiru",gmail="Lahiru@gmai.com"},
-                new Admin { id = 3, name = "kasun",gmail="Kasun@gmail.com"},
-                new Admin { id = 4, name = "malindu",gmail="malindu@gmail.com"},
-                new Admin { id = 5, name= "Amila",gmail="Amila@gmail.com"}
+                new Admin { id = 1, name = "manoj",Gmail = "wicmanoj15@gmail.com"},
+                new Admin { id = 2, name = "Lahiru",Gmail = "Lahiru10@gmail.com"},
+                new Admin { id = 3, name = "kasun",Gmail = "Kasun199@gmail.com"},
+                new Admin { id = 4, name = "malindu",Gmail = "malindu23@gmail.com"},
+                new Admin { id = 5, name= "Amila",Gmail = "Amil123@gmail.com"}
 
             });
             modelBuilder.Entity<Expense>().HasData(new Expense[] {

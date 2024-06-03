@@ -13,7 +13,9 @@ namespace myTaskApi.Models
         public int id { get; set; }
         [MaxLength(100)]
         public String name { get; set; }
-        [MaxLength(100)]
-        public String gmail { get; set; }
+
+        public String Gmail { get; set; }
+     
+       
     }
 }
