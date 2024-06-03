@@ -11,7 +11,7 @@ namespace myTaskApi.Services.Incomes
     public interface IIncomeReposatory
     {
      
-        public List<Income> GetAllIncomes();
-        public Income GetIncome(String id);
+        public List<Income> GetAllIncomes(int userId);
+        public Income GetIncome(int userId,String id);
     }
 }

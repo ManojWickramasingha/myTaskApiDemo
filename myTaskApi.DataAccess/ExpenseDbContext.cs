@@ -19,6 +19,8 @@ namespace myTaskApi.DataAccess
 
         public DbSet<Saving> Savings { get; set; }
 
+        public DbSet<EBudget> EBudgets { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = "Server=DESKTOP-DV7M2UV; Database = ExpenseDB; user=sa; password=manoj@123";
@@ -27,13 +29,30 @@ namespace myTaskApi.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Saving>().HasData(new Saving[] { 
-            
+
+            modelBuilder.Entity<EBudget>().HasData(new EBudget[] { 
+                new EBudget
+                {
+                    id = "c00B",
+                    Amount = 5000.00,
+                    Description = "Education manthly Budget Limit",
+                },
+
+                new EBudget
+                {
+                    id = "c01B",
+                    Amount = 45000.00,
+                    Description = "Medical budgets",
+                }
+            });
+            modelBuilder.Entity<Saving>().HasData(new Saving[] {
+
                 new Saving
                 {
                     Id = 10,
                     Name = "manoj",
                     Description = "Saving montlty utility Income",
+                    Amount = 400.00,
                     UserId = 100
                 },
 
@@ -42,6 +61,7 @@ namespace myTaskApi.DataAccess
                     Id = 12,
                     Name = "Lahiru",
                     Description="Saving Salary",
+                    Amount = 5000.50,
                     UserId = 101
                 }
 
@@ -53,35 +73,47 @@ namespace myTaskApi.DataAccess
                     Id=100,
                     Name="manoj",
                     Gmail="wicmanoj@gmail.com",
-                    Password="manoj@123"
+                    Password="manoj@123",
+                    AddressNo = 45,
+                    Street = "Lake round",
+                    City = "Colombo"
                 },
                 new User
                 {
                     Id=101,
                     Name="Menaka",
                     Gmail="Menaka@gmail.com",
-                    Password="menaka@123"
+                    Password="menaka@123",
+                    AddressNo = 50,
+                    Street = "Charls road",
+                    City = "Nugegoda"
                 },
                 new User
                 {
                     Id=102,
                     Name="Ashen",
                     Gmail="Ashen@gmail.com",
-                    Password="Ashen@123"
+                    Password="Ashen@123",
+                    AddressNo = 121,
+                    Street = "Pilip road",
+                    City = "Kadawatha"
                 },
                 new User
                 {
                     Id=103,
                     Name="Chinthaka",
                     Gmail="Chinthaka@gmail.com",
-                    Password="Chinthaka@123"
+                    Password="Chinthaka@123",
+                    AddressNo = 30,
+                    Street = "Lotus",
+                    City = "Colombo"
                 }
             });
             modelBuilder.Entity<Income>().HasData(new Income[] {
 
                 new Income
                 {
-                    Id = "c001",
+                    Id = "c00b",
                     Amount = 450.0,
                     Categories = "Utility Income",
                     description = "receive bording fees",
@@ -90,7 +122,7 @@ namespace myTaskApi.DataAccess
                 },
                 new Income
                 {
-                     Id = "c002",
+                     Id = "c01b",
                     Amount = 450.0,
                     Categories = "Salary",
                     description = "receive monthly salary",
@@ -100,11 +132,11 @@ namespace myTaskApi.DataAccess
             }); 
             modelBuilder.Entity<Admin>().HasData(new Admin[] { 
             
-                new Admin { id = 1, name = "manoj"},
-                new Admin { id = 2, name = "Lahiru"},
-                new Admin { id = 3, name = "kasun"},
-                new Admin { id = 4, name = "malindu"},
-                new Admin {id = 5, name= "Amila" }
+                new Admin { id = 1, name = "manoj",Gmail = "wicmanoj15@gmail.com"},
+                new Admin { id = 2, name = "Lahiru",Gmail = "Lahiru10@gmail.com"},
+                new Admin { id = 3, name = "kasun",Gmail = "Kasun199@gmail.com"},
+                new Admin { id = 4, name = "malindu",Gmail = "malindu23@gmail.com"},
+                new Admin { id = 5, name= "Amila",Gmail = "Amil123@gmail.com"}
 
             });
             modelBuilder.Entity<Expense>().HasData(new Expense[] {

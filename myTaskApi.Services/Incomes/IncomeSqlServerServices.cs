@@ -11,14 +11,14 @@ namespace myTaskApi.Services.Incomes
     public class IncomeSqlServerServices : IIncomeReposatory
     {
         private readonly ExpenseDbContext _context = new ExpenseDbContext();
-        public List<Income> GetAllIncomes()
+        public List<Income> GetAllIncomes(int userId)
         {
-            return _context.Incomes.ToList();
+            return _context.Incomes.Where(i => i.UserId == userId).ToList();
         }
 
-        public Income GetIncome(String id)
+        public Income GetIncome(int userId, string id)
         {
-            return _context.Incomes.Find(id);
+            return _context.Incomes.FirstOrDefault(i => i.Id == id && i.UserId == userId);
         }
     }
 }

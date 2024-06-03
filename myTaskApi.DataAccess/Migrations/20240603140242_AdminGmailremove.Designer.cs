@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using myTaskApi.DataAccess;
 
 namespace myTaskApi.DataAccess.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    partial class TodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240603140242_AdminGmailremove")]
+    partial class AdminGmailremove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,9 +68,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 1,
                             Amount = 3000.0,
                             Description = "Get some text books for school",
-                            Due = new DateTime(2024, 6, 8, 22, 48, 52, 910, DateTimeKind.Local).AddTicks(2489),
+                            Due = new DateTime(2024, 6, 8, 19, 32, 41, 125, DateTimeKind.Local).AddTicks(33),
                             UserId = 100,
-                            created = new DateTime(2024, 6, 3, 22, 48, 52, 910, DateTimeKind.Local).AddTicks(2071),
+                            created = new DateTime(2024, 6, 3, 19, 32, 41, 124, DateTimeKind.Local).AddTicks(9261),
                             status = 0,
                             title = "Expense Tax record in database"
                         },
@@ -78,9 +80,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 2,
                             Amount = 3890.0,
                             Description = "Goverment Tax Added water bill",
-                            Due = new DateTime(2024, 6, 8, 22, 48, 52, 910, DateTimeKind.Local).AddTicks(4425),
+                            Due = new DateTime(2024, 6, 8, 19, 32, 41, 125, DateTimeKind.Local).AddTicks(3479),
                             UserId = 101,
-                            created = new DateTime(2024, 6, 3, 22, 48, 52, 910, DateTimeKind.Local).AddTicks(4419),
+                            created = new DateTime(2024, 6, 3, 19, 32, 41, 125, DateTimeKind.Local).AddTicks(3467),
                             status = 0,
                             title = "Expense For Water bill"
                         },
@@ -90,9 +92,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 1,
                             Amount = 3780.0,
                             Description = "Goverment Tax Added current bill",
-                            Due = new DateTime(2024, 6, 8, 22, 48, 52, 910, DateTimeKind.Local).AddTicks(4438),
+                            Due = new DateTime(2024, 6, 8, 19, 32, 41, 125, DateTimeKind.Local).AddTicks(3505),
                             UserId = 102,
-                            created = new DateTime(2024, 6, 3, 22, 48, 52, 910, DateTimeKind.Local).AddTicks(4436),
+                            created = new DateTime(2024, 6, 3, 19, 32, 41, 125, DateTimeKind.Local).AddTicks(3502),
                             status = 0,
                             title = "Expense For Current bill"
                         });
@@ -104,9 +106,6 @@ namespace myTaskApi.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<string>("Gmail")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("name")
                         .HasMaxLength(100)
@@ -120,31 +119,26 @@ namespace myTaskApi.DataAccess.Migrations
                         new
                         {
                             id = 1,
-                            Gmail = "wicmanoj15@gmail.com",
                             name = "manoj"
                         },
                         new
                         {
                             id = 2,
-                            Gmail = "Lahiru10@gmail.com",
                             name = "Lahiru"
                         },
                         new
                         {
                             id = 3,
-                            Gmail = "Kasun199@gmail.com",
                             name = "kasun"
                         },
                         new
                         {
                             id = 4,
-                            Gmail = "malindu23@gmail.com",
                             name = "malindu"
                         },
                         new
                         {
                             id = 5,
-                            Gmail = "Amil123@gmail.com",
                             name = "Amila"
                         });
                 });
@@ -182,10 +176,8 @@ namespace myTaskApi.DataAccess.Migrations
 
             modelBuilder.Entity("myTaskApi.Models.Income", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
@@ -213,21 +205,21 @@ namespace myTaskApi.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 3,
+                            Id = "c001",
                             Amount = 450.0,
                             Categories = "Utility Income",
                             UserId = 100,
                             description = "receive bording fees",
-                            start = new DateTime(2024, 6, 3, 22, 48, 52, 908, DateTimeKind.Local).AddTicks(3911)
+                            start = new DateTime(2024, 6, 3, 19, 32, 41, 121, DateTimeKind.Local).AddTicks(8179)
                         },
                         new
                         {
-                            Id = 2,
+                            Id = "c002",
                             Amount = 450.0,
                             Categories = "Salary",
                             UserId = 102,
                             description = "receive monthly salary",
-                            start = new DateTime(2024, 6, 3, 22, 48, 52, 909, DateTimeKind.Local).AddTicks(7498)
+                            start = new DateTime(2024, 6, 3, 19, 32, 41, 124, DateTimeKind.Local).AddTicks(2555)
                         });
                 });
 
@@ -375,7 +367,7 @@ namespace myTaskApi.DataAccess.Migrations
             modelBuilder.Entity("myTaskApi.Models.Income", b =>
                 {
                     b.HasOne("myTaskApi.Models.User", "User")
-                        .WithMany("Incomes")
+                        .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -397,8 +389,6 @@ namespace myTaskApi.DataAccess.Migrations
             modelBuilder.Entity("myTaskApi.Models.User", b =>
                 {
                     b.Navigation("Expenses");
-
-                    b.Navigation("Incomes");
                 });
 #pragma warning restore 612, 618
         }

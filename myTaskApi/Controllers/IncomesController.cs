@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myTaskApi.Services.Incomes;
+using myTaskApi.Services.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,34 +10,37 @@ using System.Threading.Tasks;
 
 namespace myTaskApi.Controllers
 {
-    [Route("api/incomes")]
+    [Route("api/users/{userId}/incomes")]
     [ApiController]
     public class IncomesController : ControllerBase
     {
 
         private readonly IIncomeReposatory _incomeservices;
-
-        public IncomesController(IIncomeReposatory service)
+        private readonly IMapper _mapper;
+        public IncomesController(IIncomeReposatory service,IMapper mapper)
         {
             _incomeservices = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetAllIncomes()
+        public ActionResult<ICollection<IncomeDTO>> GetAllIncomes(int userId)
         {
-            var incomes = _incomeservices.GetAllIncomes();
-            return Ok(incomes);
+            var incomes = _incomeservices.GetAllIncomes(userId);
+            var mapincomes = _mapper.Map<ICollection<IncomeDTO>>(incomes);
+            return Ok(mapincomes);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetIncome(String id)
+        public ActionResult<IncomeDTO> GetIncome(int userId, String id)
         {
-            var income = _incomeservices.GetIncome(id);
+            var income = _incomeservices.GetIncome(userId,id);
             if(income is null)
             {
                 return NotFound();
             }
-            return Ok(income);
+            var mapincome = _mapper.Map<IncomeDTO>(income);
+            return Ok(mapincome);
         }
     }
 }
