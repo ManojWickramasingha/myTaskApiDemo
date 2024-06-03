@@ -1,4 +1,5 @@
-﻿using System;
+﻿using myTaskApi.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,17 @@ namespace myTaskApi.Models
         public String Gmail { get; set; }
         [MaxLength(50)]
         public String Password { get; set; }
+
+        [MaxLength(100)]
+        public int AddressNo { get; set; }
+
+        [MaxLength(50)]
+        public String Street { get; set; }
+
+        [MaxLength(50)]
+        [Required]
+        public String City { get; set; }
+
+        public ICollection<Expense> Expenses { get; set; } = new List<Expense>();
     }
 }

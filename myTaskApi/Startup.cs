@@ -40,7 +40,7 @@ namespace myTaskApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "myTaskApi", Version = "v1" });
             });
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IExpenseReposatory, ExpenseSqlServerServices>();
             services.AddScoped<IAdminReposatory, AdminSqlServerServices>();
             services.AddScoped<IIncomeReposatory, IncomeSqlServerServices>();

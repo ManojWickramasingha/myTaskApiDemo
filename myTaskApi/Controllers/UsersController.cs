@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using myTaskApi.Services.Users;
+using myTaskApi.Services.ViewModels;
+using AutoMapper;
+using System.Collections;
 
 namespace myTaskApi.Controllers
 {
@@ -14,17 +17,21 @@ namespace myTaskApi.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserReposatory _userService;
-
-        public UsersController(IUserReposatory service)
+        private readonly IMapper _mapper;
+        public UsersController(IUserReposatory service,IMapper mapper)
         {
             _userService = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetUsers()
+        public ActionResult<ICollection<UserDTO>> GetUsers()
         {
             var users = _userService.GetAllUser();
-            return Ok(users);
+           
+
+           var mapUsers =_mapper.Map<ICollection<UserDTO>>(users);
+            return Ok(mapUsers);
         }
 
         [HttpGet("{id}")]
@@ -35,7 +42,9 @@ namespace myTaskApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(user);
+
+            var mapUser = _mapper.Map<ICollection<UserDTO>>(user);
+            return Ok(mapUser);
         }
     }
 }

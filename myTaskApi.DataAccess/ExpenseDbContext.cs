@@ -73,28 +73,40 @@ namespace myTaskApi.DataAccess
                     Id=100,
                     Name="manoj",
                     Gmail="wicmanoj@gmail.com",
-                    Password="manoj@123"
+                    Password="manoj@123",
+                    AddressNo = 45,
+                    Street = "Lake round",
+                    City = "Colombo"
                 },
                 new User
                 {
                     Id=101,
                     Name="Menaka",
                     Gmail="Menaka@gmail.com",
-                    Password="menaka@123"
+                    Password="menaka@123",
+                    AddressNo = 50,
+                    Street = "Charls road",
+                    City = "Nugegoda"
                 },
                 new User
                 {
                     Id=102,
                     Name="Ashen",
                     Gmail="Ashen@gmail.com",
-                    Password="Ashen@123"
+                    Password="Ashen@123",
+                    AddressNo = 121,
+                    Street = "Pilip road",
+                    City = "Kadawatha"
                 },
                 new User
                 {
                     Id=103,
                     Name="Chinthaka",
                     Gmail="Chinthaka@gmail.com",
-                    Password="Chinthaka@123"
+                    Password="Chinthaka@123",
+                    AddressNo = 30,
+                    Street = "Lotus",
+                    City = "Colombo"
                 }
             });
             modelBuilder.Entity<Income>().HasData(new Income[] {
@@ -124,7 +136,7 @@ namespace myTaskApi.DataAccess
                 new Admin { id = 2, name = "Lahiru",gmail="Lahiru@gmai.com"},
                 new Admin { id = 3, name = "kasun",gmail="Kasun@gmail.com"},
                 new Admin { id = 4, name = "malindu",gmail="malindu@gmail.com"},
-                new Admin {id = 5, name= "Amila",gmail="Amila@gmail.com"}
+                new Admin { id = 5, name= "Amila",gmail="Amila@gmail.com"}
 
             });
             modelBuilder.Entity<Expense>().HasData(new Expense[] {

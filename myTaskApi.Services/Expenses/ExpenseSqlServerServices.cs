@@ -12,14 +12,14 @@ namespace myTaskApi.Services.Expenses
     {
         private readonly ExpenseDbContext _context = new ExpenseDbContext();
 
-        public List<Expense> AllExpenses()
+        public List<Expense> AllExpenses(int userId)
         {
-            return _context.Expenses.ToList();
+            return _context.Expenses.Where(e => e.UserId == userId).ToList();
         }  
 
-        public Expense GetExpense(int id)
+        public Expense GetExpense(int userId, int id)
         {
-            return _context.Expenses.Find(id);
+            return _context.Expenses.FirstOrDefault(e => e.id == id && e.UserId == userId);
         }
     }
 }

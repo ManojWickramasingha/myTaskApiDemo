@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\myTaskApi.DataAccess\myTaskApi.DataAccess.csproj" />
     <ProjectReference Include="..\myTaskApi.Models\myTaskApi.Models.csproj" />
   </ItemGroup>
