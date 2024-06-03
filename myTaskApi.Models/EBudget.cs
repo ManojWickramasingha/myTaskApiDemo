@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 
 namespace myTaskApi.Models
 {
-    public class Saving
+    public class EBudget
     {
         [Required]
-        public int Id { get; set; }
-        public String Name { get; set; }
-        [MaxLength(50)]
-        public String Description { get; set; }
-
+        public String id { get; set; }
+        [Required]
         public double Amount { get; set; }
-        public int UserId { get; set; }
-        public User User { get; set; }
+        [MaxLength(120)]
+        public String Description { get; set; }
     }
 }

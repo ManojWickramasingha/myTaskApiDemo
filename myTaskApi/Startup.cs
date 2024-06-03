@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using myTaskApi.Services.Incomes;
 using myTaskApi.Services.Users;
 using myTaskApi.Services.Savings;
+using myTaskApi.Services.EBudgets;
 
 namespace myTaskApi
 {
@@ -45,6 +46,7 @@ namespace myTaskApi
             services.AddScoped<IIncomeReposatory, IncomeSqlServerServices>();
             services.AddScoped<IUserReposatory, UserSqlServerService>();
             services.AddScoped<ISavingReposatory, SavingSqlServerService>();
+            services.AddScoped<IEBudgetReposatory, EBudgetSqlServerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
