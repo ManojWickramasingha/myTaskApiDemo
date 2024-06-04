@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using myTaskApi.Services.Savings;
+using AutoMapper;
+using myTaskApi.Services.ViewModels;
 
 namespace myTaskApi.Controllers
 {
@@ -13,17 +15,19 @@ namespace myTaskApi.Controllers
     public class SavingsController : ControllerBase
     {
         private readonly ISavingReposatory _savingService;
-
-        public SavingsController(ISavingReposatory service)
+        private readonly IMapper _mapper;
+        public SavingsController(ISavingReposatory service, IMapper mapper)
         {
             _savingService = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult GetSavings()
         {
             var savings = _savingService.GetAllSaving();
-            return Ok(savings);
+            var mapsavings = _mapper.Map<ICollection<SavingDTO>>(savings);
+            return Ok(mapsavings);
         }
 
         [HttpGet("{id}")]
@@ -34,7 +38,8 @@ namespace myTaskApi.Controllers
             {
                 return NotFound();
             }
-            return Ok(saving);
+            var mapsaving = _mapper.Map<SavingDTO>(saving);
+            return Ok(mapsaving);
         }
     }
 }

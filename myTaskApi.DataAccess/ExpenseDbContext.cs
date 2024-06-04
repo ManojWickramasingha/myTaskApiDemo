@@ -52,7 +52,7 @@ namespace myTaskApi.DataAccess
                     Id = 10,
                     Name = "manoj",
                     Description = "Saving montlty utility Income",
-                    Amount = 400.00,
+                    Save = 600,
                     UserId = 100
                 },
 
@@ -61,7 +61,7 @@ namespace myTaskApi.DataAccess
                     Id = 12,
                     Name = "Lahiru",
                     Description="Saving Salary",
-                    Amount = 5000.50,
+                    Save = 10000,
                     UserId = 101
                 }
 

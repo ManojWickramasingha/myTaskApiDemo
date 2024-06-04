@@ -10,8 +10,8 @@ using myTaskApi.DataAccess;
 namespace myTaskApi.DataAccess.Migrations
 {
     [DbContext(typeof(ExpenseDbContext))]
-    [Migration("20240601111747_SavingEntity")]
-    partial class SavingEntity
+    [Migration("20240604114037_changeSaving")]
+    partial class changeSaving
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,8 @@ namespace myTaskApi.DataAccess.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("Due")
                         .HasColumnType("datetime2");
@@ -67,9 +68,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 1,
                             Amount = 3000.0,
                             Description = "Get some text books for school",
-                            Due = new DateTime(2024, 6, 6, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(1235),
+                            Due = new DateTime(2024, 6, 9, 17, 10, 36, 34, DateTimeKind.Local).AddTicks(6391),
                             UserId = 100,
-                            created = new DateTime(2024, 6, 1, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(978),
+                            created = new DateTime(2024, 6, 4, 17, 10, 36, 34, DateTimeKind.Local).AddTicks(5950),
                             status = 0,
                             title = "Expense Tax record in database"
                         },
@@ -79,9 +80,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 2,
                             Amount = 3890.0,
                             Description = "Goverment Tax Added water bill",
-                            Due = new DateTime(2024, 6, 6, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2393),
+                            Due = new DateTime(2024, 6, 9, 17, 10, 36, 34, DateTimeKind.Local).AddTicks(8375),
                             UserId = 101,
-                            created = new DateTime(2024, 6, 1, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2389),
+                            created = new DateTime(2024, 6, 4, 17, 10, 36, 34, DateTimeKind.Local).AddTicks(8368),
                             status = 0,
                             title = "Expense For Water bill"
                         },
@@ -91,9 +92,9 @@ namespace myTaskApi.DataAccess.Migrations
                             Adminid = 1,
                             Amount = 3780.0,
                             Description = "Goverment Tax Added current bill",
-                            Due = new DateTime(2024, 6, 6, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2402),
+                            Due = new DateTime(2024, 6, 9, 17, 10, 36, 34, DateTimeKind.Local).AddTicks(8389),
                             UserId = 102,
-                            created = new DateTime(2024, 6, 1, 16, 47, 46, 816, DateTimeKind.Local).AddTicks(2401),
+                            created = new DateTime(2024, 6, 4, 17, 10, 36, 34, DateTimeKind.Local).AddTicks(8388),
                             status = 0,
                             title = "Expense For Current bill"
                         });
@@ -106,8 +107,12 @@ namespace myTaskApi.DataAccess.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("name")
+                    b.Property<string>("Gmail")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("id");
 
@@ -117,27 +122,63 @@ namespace myTaskApi.DataAccess.Migrations
                         new
                         {
                             id = 1,
+                            Gmail = "wicmanoj15@gmail.com",
                             name = "manoj"
                         },
                         new
                         {
                             id = 2,
+                            Gmail = "Lahiru10@gmail.com",
                             name = "Lahiru"
                         },
                         new
                         {
                             id = 3,
+                            Gmail = "Kasun199@gmail.com",
                             name = "kasun"
                         },
                         new
                         {
                             id = 4,
+                            Gmail = "malindu23@gmail.com",
                             name = "malindu"
                         },
                         new
                         {
                             id = 5,
+                            Gmail = "Amil123@gmail.com",
                             name = "Amila"
+                        });
+                });
+
+            modelBuilder.Entity("myTaskApi.Models.EBudget", b =>
+                {
+                    b.Property<string>("id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("EBudgets");
+
+                    b.HasData(
+                        new
+                        {
+                            id = "c00B",
+                            Amount = 5000.0,
+                            Description = "Education manthly Budget Limit"
+                        },
+                        new
+                        {
+                            id = "c01B",
+                            Amount = 45000.0,
+                            Description = "Medical budgets"
                         });
                 });
 
@@ -150,13 +191,15 @@ namespace myTaskApi.DataAccess.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Categories")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("start")
                         .HasColumnType("datetime2");
@@ -170,21 +213,21 @@ namespace myTaskApi.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c001",
+                            Id = "c00b",
                             Amount = 450.0,
                             Categories = "Utility Income",
                             UserId = 100,
                             description = "receive bording fees",
-                            start = new DateTime(2024, 6, 1, 16, 47, 46, 814, DateTimeKind.Local).AddTicks(8598)
+                            start = new DateTime(2024, 6, 4, 17, 10, 36, 32, DateTimeKind.Local).AddTicks(6573)
                         },
                         new
                         {
-                            Id = "c002",
+                            Id = "c01b",
                             Amount = 450.0,
                             Categories = "Salary",
                             UserId = 102,
                             description = "receive monthly salary",
-                            start = new DateTime(2024, 6, 1, 16, 47, 46, 815, DateTimeKind.Local).AddTicks(8660)
+                            start = new DateTime(2024, 6, 4, 17, 10, 36, 34, DateTimeKind.Local).AddTicks(1754)
                         });
                 });
 
@@ -195,8 +238,12 @@ namespace myTaskApi.DataAccess.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -214,6 +261,7 @@ namespace myTaskApi.DataAccess.Migrations
                         new
                         {
                             Id = 10,
+                            Amount = 400.0,
                             Description = "Saving montlty utility Income",
                             Name = "manoj",
                             UserId = 100
@@ -221,6 +269,7 @@ namespace myTaskApi.DataAccess.Migrations
                         new
                         {
                             Id = 12,
+                            Amount = 5000.0,
                             Description = "Saving Salary",
                             Name = "Lahiru",
                             UserId = 101
@@ -234,6 +283,15 @@ namespace myTaskApi.DataAccess.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("AddressNo")
+                        .HasMaxLength(100)
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Gmail")
                         .HasColumnType("nvarchar(max)");
 
@@ -241,7 +299,12 @@ namespace myTaskApi.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Street")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -251,30 +314,42 @@ namespace myTaskApi.DataAccess.Migrations
                         new
                         {
                             Id = 100,
+                            AddressNo = 45,
+                            City = "Colombo",
                             Gmail = "wicmanoj@gmail.com",
                             Name = "manoj",
-                            Password = "manoj@123"
+                            Password = "manoj@123",
+                            Street = "Lake round"
                         },
                         new
                         {
                             Id = 101,
+                            AddressNo = 50,
+                            City = "Nugegoda",
                             Gmail = "Menaka@gmail.com",
                             Name = "Menaka",
-                            Password = "menaka@123"
+                            Password = "menaka@123",
+                            Street = "Charls road"
                         },
                         new
                         {
                             Id = 102,
+                            AddressNo = 121,
+                            City = "Kadawatha",
                             Gmail = "Ashen@gmail.com",
                             Name = "Ashen",
-                            Password = "Ashen@123"
+                            Password = "Ashen@123",
+                            Street = "Pilip road"
                         },
                         new
                         {
                             Id = 103,
+                            AddressNo = 30,
+                            City = "Colombo",
                             Gmail = "Chinthaka@gmail.com",
                             Name = "Chinthaka",
-                            Password = "Chinthaka@123"
+                            Password = "Chinthaka@123",
+                            Street = "Lotus"
                         });
                 });
 
@@ -287,7 +362,7 @@ namespace myTaskApi.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("myTaskApi.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Expenses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -300,7 +375,7 @@ namespace myTaskApi.DataAccess.Migrations
             modelBuilder.Entity("myTaskApi.Models.Income", b =>
                 {
                     b.HasOne("myTaskApi.Models.User", "User")
-                        .WithMany()
+                        .WithMany("Incomes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -317,6 +392,13 @@ namespace myTaskApi.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("myTaskApi.Models.User", b =>
+                {
+                    b.Navigation("Expenses");
+
+                    b.Navigation("Incomes");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,7 +10,7 @@ namespace myTaskApi.Services.Expenses
    public interface IExpenseReposatory
     {
         public List<Expense> AllExpenses(int userId);
-        public Expense GetExpense(int userId, int id);
+        public Expense GetExpense( int id);
        
     }
 }

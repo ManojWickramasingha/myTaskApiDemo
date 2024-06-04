@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using myTaskApi.Services.Incomes;
@@ -17,22 +18,23 @@ namespace myTaskApi.Controllers
 
         private readonly IIncomeReposatory _incomeservices;
         private readonly IMapper _mapper;
-        public IncomesController(IIncomeReposatory service,IMapper mapper)
+        public IncomesController(IIncomeReposatory service, IMapper mapper)
         {
             _incomeservices = service;
             _mapper = mapper;
+           
         }
 
         [HttpGet]
-        public ActionResult<ICollection<IncomeDTO>> GetAllIncomes(int userId)
+        public IActionResult GetAllIncomes(int userId)
         {
             var incomes = _incomeservices.GetAllIncomes(userId);
-            var mapincomes = _mapper.Map<ICollection<IncomeDTO>>(incomes);
+            var mapincomes = _mapper.Map<ICollection<IncomeDTO>>(incomes); 
             return Ok(mapincomes);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<IncomeDTO> GetIncome(int userId, String id)
+        public IActionResult GetIncome(int userId, String id)
         {
             var income = _incomeservices.GetIncome(userId,id);
             if(income is null)
