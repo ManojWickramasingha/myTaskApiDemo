@@ -10,7 +10,7 @@ using myTaskApi.Services.ViewModels;
 
 namespace myTaskApi.Controllers
 {
-    [Route("api/savings")]
+    [Route("api/users/{userId}/savings")]
     [ApiController]
     public class SavingsController : ControllerBase
     {
@@ -23,17 +23,17 @@ namespace myTaskApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetSavings()
+        public ActionResult<ICollection<SavingDTO>> GetSavings(int userId)
         {
-            var savings = _savingService.GetAllSaving();
+            var savings = _savingService.GetAllSaving(userId);
             var mapsavings = _mapper.Map<ICollection<SavingDTO>>(savings);
             return Ok(mapsavings);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSaving(int id)
+        public ActionResult<SavingDTO> GetSaving(int userId,int id)
         {
-            var saving = _savingService.GetSaving(id);
+            var saving = _savingService.GetSaving(userId,id);
             if(saving is null)
             {
                 return NotFound();

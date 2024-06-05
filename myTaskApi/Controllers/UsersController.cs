@@ -28,14 +28,13 @@ namespace myTaskApi.Controllers
         public ActionResult<ICollection<UserDTO>> GetUsers()
         {
             var users = _userService.GetAllUser();
+            var usersmap = _mapper.Map<ICollection<UserDTO>>(users);
            
-
-           var mapUsers =_mapper.Map<ICollection<UserDTO>>(users);
-            return Ok(mapUsers);
+            return Ok(usersmap);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
+        public ActionResult<UserDTO> GetUser(int id)
         {
             var user = _userService.GetUser(id);
             if(user is null)
@@ -43,8 +42,8 @@ namespace myTaskApi.Controllers
                 return NotFound();
             }
 
-            var mapUser = _mapper.Map<ICollection<UserDTO>>(user);
-            return Ok(mapUser);
+            var usermap = _mapper.Map<UserDTO>(user);
+            return Ok(usermap);
         }
     }
 }

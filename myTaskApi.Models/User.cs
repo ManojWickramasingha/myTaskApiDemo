@@ -12,6 +12,7 @@ namespace myTaskApi.Models
     {
         [Required]
         public int Id { get; set; }
+        [Required]
         public String Name { get; set; }
         public String Gmail { get; set; }
         [MaxLength(50)]
@@ -30,5 +31,7 @@ namespace myTaskApi.Models
         public ICollection<Expense> Expenses { get; set; } = new List<Expense>();
 
         public ICollection<Income> Incomes { get; set; } = new List<Income>();
+
+        public ICollection<EBudget> EBudgets { get; set; } = new List<EBudget>();
     }
 }

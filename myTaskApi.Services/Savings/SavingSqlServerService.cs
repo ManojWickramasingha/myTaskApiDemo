@@ -11,14 +11,14 @@ namespace myTaskApi.Services.Savings
     public class SavingSqlServerService : ISavingReposatory
     {
         private readonly ExpenseDbContext _context = new ExpenseDbContext();
-        public List<Saving> GetAllSaving()
+        public List<Saving> GetAllSaving(int userId)
         {
-            return _context.Savings.ToList();
+            return _context.Savings.Where(e => e.UserId == userId).ToList();
         }
 
-        public Saving GetSaving(int id)
+        public Saving GetSaving(int userId,int id)
         {
-            return _context.Savings.Find(id);
+            return _context.Savings.FirstOrDefault(e => e.Id == id && e.UserId == userId);
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace myTaskApi.Controllers
 {
-    [Route("api/ebudgets")]
+    [Route("api/user/{userId}/ebudgets")]
     [ApiController]
     public class EBudgetsController : ControllerBase
     {
@@ -23,16 +23,16 @@ namespace myTaskApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetBudgets()
+        public IActionResult GetBudgets(int userId)
         {
-            var budgets = _Ebudgetservice.GetAllBudget();
+            var budgets = _Ebudgetservice.GetAllBudget(userId);
             var mapbudgets = _mapper.Map<ICollection<EBudgetDTO>>(budgets);
             return Ok(mapbudgets);
         }
         [HttpGet("{id}")]
-        public IActionResult GetBudget(String id)
+        public IActionResult GetBudget(int userId,String id)
         {
-            var budget = _Ebudgetservice.GetBudget(id);
+            var budget = _Ebudgetservice.GetBudget(userId,id);
 
             if(budget is null)
             {

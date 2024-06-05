@@ -36,6 +36,7 @@ namespace myTaskApi.DataAccess
                     id = "c00B",
                     Amount = 5000.00,
                     Description = "Education manthly Budget Limit",
+                    UserId = 100
                 },
 
                 new EBudget
@@ -43,6 +44,7 @@ namespace myTaskApi.DataAccess
                     id = "c01B",
                     Amount = 45000.00,
                     Description = "Medical budgets",
+                    UserId = 100
                 }
             });
             modelBuilder.Entity<Saving>().HasData(new Saving[] {

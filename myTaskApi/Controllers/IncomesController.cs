@@ -26,7 +26,7 @@ namespace myTaskApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllIncomes(int userId)
+        public ActionResult<ICollection<IncomeDTO>> GetAllIncomes(int userId)
         {
             var incomes = _incomeservices.GetAllIncomes(userId);
             var mapincomes = _mapper.Map<ICollection<IncomeDTO>>(incomes); 
@@ -34,7 +34,7 @@ namespace myTaskApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetIncome(int userId, String id)
+        public ActionResult<IncomeDTO> GetIncome(int userId, String id)
         {
             var income = _incomeservices.GetIncome(userId,id);
             if(income is null)

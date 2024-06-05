@@ -32,9 +32,9 @@ namespace myTaskApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ExpenseDTO> GetExpense(int id)
+        public ActionResult<ExpenseDTO> GetExpense(int userId,int id)
         {
-            var expense = _expenseServices.GetExpense(id);
+            var expense = _expenseServices.GetExpense(userId, id);
             if(expense is null)
             {
                 return NotFound();

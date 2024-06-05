@@ -15,5 +15,8 @@ namespace myTaskApi.Models
         public double Amount { get; set; }
         [MaxLength(120)]
         public String Description { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
     }
 }

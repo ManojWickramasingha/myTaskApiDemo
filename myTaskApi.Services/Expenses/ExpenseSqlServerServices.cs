@@ -17,9 +17,9 @@ namespace myTaskApi.Services.Expenses
             return _context.Expenses.Where(i => i.UserId == userId).ToList();
         }  
 
-        public Expense GetExpense( int Id)
+        public Expense GetExpense(int userId, int Id)
         {
-            return _context.Expenses.Find(Id);
+            return _context.Expenses.FirstOrDefault(i => i.id == Id && i.UserId == userId);
         }
     }
 }

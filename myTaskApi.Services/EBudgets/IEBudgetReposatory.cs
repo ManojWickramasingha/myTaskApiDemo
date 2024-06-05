@@ -9,7 +9,7 @@ namespace myTaskApi.Services.EBudgets
 {
     public interface IEBudgetReposatory
     {
-        public List<EBudget> GetAllBudget();
-        public EBudget GetBudget(String id);
+        public List<EBudget> GetAllBudget(int userId);
+        public EBudget GetBudget(int userId,String id);
     }
 }
