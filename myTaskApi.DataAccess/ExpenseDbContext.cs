@@ -21,6 +21,8 @@ namespace myTaskApi.DataAccess
 
         public DbSet<EBudget> EBudgets { get; set; }
 
+        public DbSet<Report> Reports { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = "Server=DESKTOP-DV7M2UV; Database = ExpenseDB; user=sa; password=manoj@123";
@@ -29,6 +31,17 @@ namespace myTaskApi.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Report>().HasData(new Report[] { 
+                new Report
+                {
+                    Id = 1,
+                    ReportName = "Expense",
+                    ReportNo = 1,
+                    Description = "monthly expenses summary..",
+                    Isuse = DateTime.Now,
+                    UserId = 100
+                }
+            });
 
             modelBuilder.Entity<EBudget>().HasData(new EBudget[] { 
                 new EBudget
