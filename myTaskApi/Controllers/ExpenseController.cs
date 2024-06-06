@@ -25,16 +25,16 @@ namespace myTaskApi.Controllers
         [HttpGet]
         public ActionResult<ICollection<ExpenseDTO>> AllExpenses (int userId)
         {
-            var myExpenses = _expenseServices.AllExpenses(userId);
-            var mapExpenses = _mapper.Map<ICollection<ExpenseDTO>>(myExpenses);
+            var expenses = _expenseServices.AllExpenses(userId);
+            var mapExpenses = _mapper.Map<ICollection<ExpenseDTO>>(expenses);
             return Ok(mapExpenses);
             
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetExpense(int userId,int id)
+        public ActionResult<ExpenseDTO> GetExpense(int userId,int id)
         {
-            var expense = _expenseServices.GetExpense(userId,id);
+            var expense = _expenseServices.GetExpense(userId, id);
             if(expense is null)
             {
                 return NotFound();

@@ -5,36 +5,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using myTaskApi.Services.Savings;
+using AutoMapper;
+using myTaskApi.Services.ViewModels;
 
 namespace myTaskApi.Controllers
 {
-    [Route("api/savings")]
+    [Route("api/users/{userId}/savings")]
     [ApiController]
     public class SavingsController : ControllerBase
     {
         private readonly ISavingReposatory _savingService;
-
-        public SavingsController(ISavingReposatory service)
+        private readonly IMapper _mapper;
+        public SavingsController(ISavingReposatory service, IMapper mapper)
         {
             _savingService = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult GetSavings()
+        public ActionResult<ICollection<SavingDTO>> GetSavings(int userId)
         {
-            var savings = _savingService.GetAllSaving();
-            return Ok(savings);
+            var savings = _savingService.GetAllSaving(userId);
+            var mapsavings = _mapper.Map<ICollection<SavingDTO>>(savings);
+            return Ok(mapsavings);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetSaving(int id)
+        public ActionResult<SavingDTO> GetSaving(int userId,int id)
         {
-            var saving = _savingService.GetSaving(id);
+            var saving = _savingService.GetSaving(userId,id);
             if(saving is null)
             {
                 return NotFound();
             }
-            return Ok(saving);
+            var mapsaving = _mapper.Map<SavingDTO>(saving);
+            return Ok(mapsaving);
         }
     }
 }

@@ -21,6 +21,8 @@ namespace myTaskApi.DataAccess
 
         public DbSet<EBudget> EBudgets { get; set; }
 
+        public DbSet<Report> Reports { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = "Server=DESKTOP-DV7M2UV; Database = ExpenseDB; user=sa; password=manoj@123";
@@ -29,6 +31,17 @@ namespace myTaskApi.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Report>().HasData(new Report[] { 
+                new Report
+                {
+                    Id = 1,
+                    ReportName = "Expense",
+                    ReportNo = 1,
+                    Description = "monthly expenses summary..",
+                    Isuse = DateTime.Now,
+                    UserId = 100
+                }
+            });
 
             modelBuilder.Entity<EBudget>().HasData(new EBudget[] { 
                 new EBudget
@@ -36,6 +49,7 @@ namespace myTaskApi.DataAccess
                     id = "c00B",
                     Amount = 5000.00,
                     Description = "Education manthly Budget Limit",
+                    UserId = 100
                 },
 
                 new EBudget
@@ -43,6 +57,7 @@ namespace myTaskApi.DataAccess
                     id = "c01B",
                     Amount = 45000.00,
                     Description = "Medical budgets",
+                    UserId = 100
                 }
             });
             modelBuilder.Entity<Saving>().HasData(new Saving[] {
@@ -52,7 +67,7 @@ namespace myTaskApi.DataAccess
                     Id = 10,
                     Name = "manoj",
                     Description = "Saving montlty utility Income",
-                    Amount = 400.00,
+                    Save = 600,
                     UserId = 100
                 },
 
@@ -61,7 +76,7 @@ namespace myTaskApi.DataAccess
                     Id = 12,
                     Name = "Lahiru",
                     Description="Saving Salary",
-                    Amount = 5000.50,
+                    Save = 10000,
                     UserId = 101
                 }
 

@@ -12,9 +12,7 @@ namespace myTaskApi.Services.ViewModels
        
         public int id { get; set; }
         public String title { get; set; }
-       
-        public String Description { get; set; }
-
+      
         public DateTime created { get; set; }
 
         public DateTime Due { get; set; }
@@ -23,7 +21,5 @@ namespace myTaskApi.Services.ViewModels
 
         public double Amount { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
     }
 }

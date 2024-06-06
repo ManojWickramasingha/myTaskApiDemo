@@ -9,8 +9,8 @@ namespace myTaskApi.Services.Savings
 {
     public interface ISavingReposatory
     {
-        public List<Saving> GetAllSaving();
+        public List<Saving> GetAllSaving(int userId);
 
-        public Saving GetSaving(int id);
+        public Saving GetSaving(int userId,int id);
     }
 }

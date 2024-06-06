@@ -25,7 +25,7 @@ namespace myTaskApi.Controllers
         }
       
         [HttpGet]
-        public IActionResult GetAdmins()
+        public ActionResult<ICollection<AdminDTO>> GetAdmins()
         {
             var admins = _service.GetAllAdmins();
             var mapadmins = _mapper.Map<ICollection<AdminDTO>>(admins);
@@ -34,7 +34,7 @@ namespace myTaskApi.Controllers
 
      
         [HttpGet("{id}")]
-        public IActionResult GetAdmin(int id)
+        public ActionResult<AdminDTO> GetAdmin(int id)
         {
             var admin = _service.GetAdmin(id);
             if(admin is null)

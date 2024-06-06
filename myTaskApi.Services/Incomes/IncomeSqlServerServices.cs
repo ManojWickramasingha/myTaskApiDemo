@@ -16,7 +16,7 @@ namespace myTaskApi.Services.Incomes
             return _context.Incomes.Where(i => i.UserId == userId).ToList();
         }
 
-        public Income GetIncome(int userId, string id)
+        public Income GetIncome(int userId, String id)
         {
             return _context.Incomes.FirstOrDefault(i => i.Id == id && i.UserId == userId);
         }
